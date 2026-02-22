@@ -1,5 +1,6 @@
 import { Image, Text, View } from 'react-native';
 import { IMG } from '../utils';
+import CustomFooter from '../components/CustomFooter';
 
 const ProfileScreen = () => {
   return (
@@ -13,11 +14,13 @@ const ProfileScreen = () => {
       <Image
        source={IMG.LOGO}
         style={{
-          width: 200,
-          height: 200,
+          opacity: 0.1,
+          width: 300,
+          height: 300,
         }}
       />
       {/* <Text>ProfileScreen</Text> */}
+      <CustomFooter />
     </View>
   );
 };

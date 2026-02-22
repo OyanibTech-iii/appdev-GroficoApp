@@ -6,4 +6,6 @@ export default {
   // Main
   HOME: 'Home',
   PROFILE: 'Profile',
+  PRODUCT: 'Product',
+  TERMS_POLICY: 'TermsPolicy',
 };

@@ -4,6 +4,9 @@ import { Image, Text, TouchableOpacity, View, Alert, ScrollView } from 'react-na
 import { IMG, ROUTES } from '../utils';
 import { AuthContext } from '../utils/AuthContext';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import CustomFooter from '../components/CustomFooter';
+import HeaderHome from '../components/HeaderHome';
+
 
 const HomeScreen = () => {
   const navigation = useNavigation();
@@ -11,10 +14,10 @@ const HomeScreen = () => {
 
   return (
     <View style={{ flex: 1 }}>
-
-      <View style={{ flexDirection: 'row', justifyContent: 'flex-end', padding: 10, gap: 2,}}>
+      <HeaderHome />
+      <View style={{ flexDirection: 'row', justifyContent: 'flex-end', padding: 10, gap: 2, }}>
         <TouchableOpacity
-             onPress={() => {
+          onPress={() => {
             navigation.navigate(ROUTES.PROFILE);
           }}
         >
@@ -24,7 +27,7 @@ const HomeScreen = () => {
               justifyContent: 'flex-end',
               alignItems: 'center',
               padding: 5,
-              backgroundColor: '#47bf24',
+              backgroundColor: '#16a34a',
               borderRadius: 8,
               marginTop: 20,
             }}
@@ -35,8 +38,30 @@ const HomeScreen = () => {
             </Text>
           </View>
         </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate(ROUTES.PRODUCT);
+          }}
+        >
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'flex-end',
+              alignItems: 'center',
+              padding: 5,
+              backgroundColor: '#16a34a',
+              borderRadius: 8,
+              marginTop: 20, 
+            }}
+          >
+            <Ionicons name="cart-outline" size={15} color="white" />
+            <Text style={{ fontSize: 12, color: 'white', marginLeft: 5, }}>
+              Product
+            </Text>
+          </View>
+        </TouchableOpacity>
 
-            <TouchableOpacity
+        <TouchableOpacity
           onPress={() => {
 
             Alert.alert('Logout', 'Are you sure you want to logout?', [
@@ -71,11 +96,11 @@ const HomeScreen = () => {
           </View>
         </TouchableOpacity>
       </View>
-      <ScrollView
+
+      {/* <ScrollView */}
+      <View
         style={{
           flex: 1,
-        }}
-        contentContainerStyle={{
           justifyContent: 'center',
           alignItems: 'center',
           paddingVertical: 50,
@@ -84,16 +109,17 @@ const HomeScreen = () => {
         <Image
           source={IMG.LOGO}
           style={{
-            width: 200,
-            height: 200,
-            marginBottom: 30,
+            opacity: 0.1,
+            width: 300,
+            height: 300,
           }}
         />
         {/* <Text style={{ fontSize: 32, color: 'black', fontWeight: 'bold', marginBottom: 30, fontFamily: 'Poppins-Medium', }}>HomeScreen</Text> */}
 
 
-
-      </ScrollView>
+      </View>
+      {/* </ScrollView> */}
+      <CustomFooter />
     </View>
   );
 };
