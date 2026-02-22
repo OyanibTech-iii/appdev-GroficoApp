@@ -156,6 +156,7 @@ const Register = () => {
         <View style={{ flexDirection: 'row' }}>
           <Text style={{ fontFamily: 'Poppins-Medium', color: '#0f3a03', fontSize: 12 }}>Already have an account?</Text>
           <TouchableOpacity
+          style={{ marginLeft: 5 }}
             onPress={() => navigation.navigate(ROUTES.LOGIN)}
           >
             <Text style={{ color: '#1f6908', fontFamily: 'Poppins-Bold', letterSpacing: .5, fontSize: 12 }}>Login</Text>
