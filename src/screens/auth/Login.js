@@ -1,9 +1,10 @@
 import { useContext, useState } from 'react';
-import { Alert, Text, TouchableOpacity, View, Image, ImageBackground } from 'react-native';
+import { Text, TouchableOpacity, View, Image, ImageBackground, Modal, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import CustomButton from '../../components/CustomButton';
 import CustomFooter from '../../components/CustomFooter';
 import CustomTextInput from '../../components/CustomTextInput';
+import CustomModal from '../../components/CustomModal';
 import { IMG, ROUTES } from '../../utils';
 import { AuthContext } from '../../utils/AuthContext';
 
@@ -11,9 +12,14 @@ const Login = () => {
   // GETTER //SETTER
   const [emailAdd, setEmailAdd] = useState('');
   const [password, setPassword] = useState('');
-
+  const { login, setIsProcessing } = useContext(AuthContext);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [modalContent, setModalContent] = useState({ title: '', message: '', type: '' });
   const navigation = useNavigation();
-  const { login } = useContext(AuthContext);
+  const showAlert = (title, message, type = 'error') => {
+    setModalContent({ title, message, type });
+    setModalVisible(true);
+  };
 
   //   useEffect(() => {}, [emailAdd, password]);
 
@@ -22,14 +28,21 @@ const Login = () => {
       source={IMG.BACKGROUND}
       style={{ flex: 1, backgroundColor: '#48bf2425' }}
       resizeMode="cover"
-      imageStyle={{ opacity: 0.1}}
-      blurRadius={8} 
+      imageStyle={{ opacity: 0.1 }}
+      blurRadius={8}
     >
+    
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', }}>
-
+        <CustomModal
+          visible={modalVisible}
+          title={modalContent.title}
+          message={modalContent.message}
+          type={modalContent.type}
+          onClose={() => setModalVisible(false)}
+        />
 
         <View >
-          <Image source={IMG.LOGO} style={{ width: 300, height: 200,  marginTop: 80, }} resizeMode="contain" />
+          <Image source={IMG.LOGO} style={{ width: 300, height: 200, marginTop: 80, }} resizeMode="contain" />
         </View>
 
         {/* <Text style={{ color: 'black', fontFamily: 'Poppins-Medium' }}>{emailAdd}</Text>
@@ -102,16 +115,37 @@ const Login = () => {
             fontSize: 16,
             fontFamily: 'Poppins-Medium',
           }}
+          // onPress={async () => {
+          //             login({ 
+          //     email: emailAdd,
+          //     password: password
+          //   });
+
+          // }}
           onPress={() => {
+
             if (emailAdd === '' || password === '') {
-              Alert.alert('Invalid Credentials', 'Please fill in all fields, Try again!');
+              showAlert('Invalid Credentials', 'Please fill in all fields.');
               return;
             }
             if (emailAdd === '123' && password === '123') {
-              Alert.alert('Success', 'Login successful!');
-              login({ email: emailAdd });
+              showAlert('Success', 'Login successful!', 'success');
+
+              setTimeout(() => {
+                setModalVisible(false);
+
+                // 3. Trigger the ProcessNav globally
+                setIsProcessing(true);
+
+                // 4. Delay the actual login to show the spinner
+                setTimeout(() => {
+                  login({ email: emailAdd });
+                  setIsProcessing(false); // Turn off processing once logged in
+                }, 2500);
+
+              }, 1500);
             } else {
-              Alert.alert('Invalid Credentials', 'Email or password is incorrect. Try again!');
+              showAlert('Invalid Credentials', 'Email or password is incorrect.');
             }
           }}
         />
@@ -122,7 +156,7 @@ const Login = () => {
             style={{ marginLeft: 5 }}
             onPress={() => navigation.navigate(ROUTES.REGISTER)}
           >
-              <Text style={{ color: '#1f6908', fontFamily: 'Poppins-Bold', letterSpacing: .5, fontSize: 12 }}>Register</Text>
+            <Text style={{ color: '#1f6908', fontFamily: 'Poppins-Bold', letterSpacing: .5, fontSize: 12 }}>Register</Text>
           </TouchableOpacity>
         </View>
         <CustomFooter />
