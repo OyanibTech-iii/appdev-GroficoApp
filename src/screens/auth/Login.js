@@ -21,8 +21,6 @@ const Login = () => {
     setModalVisible(true);
   };
 
-  //   useEffect(() => {}, [emailAdd, password]);
-
   return (
     <ImageBackground
       source={IMG.BACKGROUND}
@@ -31,22 +29,32 @@ const Login = () => {
       imageStyle={{ opacity: 0.1 }}
       blurRadius={8}
     >
-    
+
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', }}>
         <CustomModal
           visible={modalVisible}
           title={modalContent.title}
           message={modalContent.message}
           type={modalContent.type}
-          onClose={() => setModalVisible(false)}
+          onClose={() => {
+            setModalVisible(false);
+
+            // Trigger the process ONLY if the login was successful
+            if (modalContent.type === 'success') {
+              setIsProcessing(true);
+
+              // Simulate the loading delay before calling the context login
+              setTimeout(() => {
+                login({ email: emailAdd });
+                setIsProcessing(false);
+              }, 2500);
+            }
+          }}
         />
 
         <View >
           <Image source={IMG.LOGO} style={{ width: 300, height: 200, marginTop: 80, }} resizeMode="contain" />
         </View>
-
-        {/* <Text style={{ color: 'black', fontFamily: 'Poppins-Medium' }}>{emailAdd}</Text>
-      <Text style={{ color: 'black', fontFamily: 'Poppins-Medium' }}>{password}</Text> */}
 
         <View style={{ width: '100%', alignItems: 'center', }}>
           <Text style={{ fontSize: 20, color: '#0ea242', fontFamily: 'Poppins-Medium', marginBottom: 10, }}>Cultivating Green Futures</Text>
@@ -130,20 +138,6 @@ const Login = () => {
             }
             if (emailAdd === '123' && password === '123') {
               showAlert('Success', 'Login successful!', 'success');
-
-              setTimeout(() => {
-                setModalVisible(false);
-
-                // 3. Trigger the ProcessNav globally
-                setIsProcessing(true);
-
-                // 4. Delay the actual login to show the spinner
-                setTimeout(() => {
-                  login({ email: emailAdd });
-                  setIsProcessing(false); // Turn off processing once logged in
-                }, 2500);
-
-              }, 1500);
             } else {
               showAlert('Invalid Credentials', 'Email or password is incorrect.');
             }
