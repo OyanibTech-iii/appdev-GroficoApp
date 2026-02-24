@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { View, Text, Image, Animated, Easing } from 'react-native';
 import { IMG } from '../utils';
 
-const ProcessNav = () => {
+const ReleaseNav = () => {
   const spinValue = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -18,16 +18,11 @@ const ProcessNav = () => {
 
   const spin = spinValue.interpolate({
     inputRange: [0, 1],
-    outputRange: ['0deg', '360deg'],
+    outputRange: ['360deg', '0deg'], // Reverse spin for logout
   });
 
   return (
-    <View style={{
-      flex: 1,
-      backgroundColor: '#ffffff',
-      justifyContent: 'center',
-      alignItems: 'center',
-    }}>
+    <View style={{ flex: 1, backgroundColor: '#ffffff', justifyContent: 'center', alignItems: 'center' }}>
       <View style={{ width: 140, height: 140, justifyContent: 'center', alignItems: 'center' }}>
         <Animated.View style={{
           position: 'absolute',
@@ -35,8 +30,8 @@ const ProcessNav = () => {
           height: 120,
           borderRadius: 60,
           borderWidth: 5,
-          borderColor: '#09b559',
-          borderTopColor: 'rgba(9, 181, 89, 0.15)',
+          borderColor: 'grey', 
+          borderTopColor: 'rgba(137, 129, 129, 0.15)',
           transform: [{ rotate: spin }],
         }} />
 
@@ -53,37 +48,20 @@ const ProcessNav = () => {
           shadowOpacity: 0.1,
           shadowRadius: 6,
         }}>
-          <Image 
-            source={IMG.LOGO} 
-            style={{ width: 60, height: 60 }} 
-            resizeMode="contain" 
-          />
+          <Image source={IMG.LOGO} style={{ width: 60, height: 60 }} resizeMode="contain" />
         </View>
       </View>
 
       <View style={{ marginTop: 40, alignItems: 'center', paddingHorizontal: 30 }}>
-        <Text style={{
-          fontSize: 22,
-          fontWeight: 'bold',
-          color: '#0ea242',
-          fontFamily: 'Poppins-Bold',
-          marginBottom: 10,
-        }}>
-          Signing you in...
+        <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#0c5226', marginBottom: 10 }}>
+          Signing you out...
         </Text>
-        <Text style={{
-          fontSize: 14,
-          color: '#0f3a03',
-          textAlign: 'center',
-          opacity: 0.8,
-          fontFamily: 'Poppins-Medium',
-          lineHeight: 22,
-        }}>
-          We are validating your credentials.{"\n"}This may take a few seconds.
+        <Text style={{ fontSize: 14, color: '#64748b', textAlign: 'center', opacity: 0.8, lineHeight: 22 }}>
+          Securing your account session.{"\n"}Please wait a moment.
         </Text>
       </View>
     </View>
   );
 };
 
-export default ProcessNav;
+export default ReleaseNav;

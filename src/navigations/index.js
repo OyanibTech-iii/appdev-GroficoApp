@@ -5,11 +5,12 @@ import { Platform, StatusBar, useColorScheme } from 'react-native';
 import AuthNav from './AuthNav';
 import MainNav from './MainNav';
 import ProcessNav from './ProcessNav';
+import ReleaseNav from './ReleaseNav';
 import { AuthContext } from '../utils/AuthContext';
 
 export default () => {
   const isDarkMode = useColorScheme() === 'dark';
-  const { isLoggedIn, isProcessing } = useContext(AuthContext);
+  const { isLoggedIn, isProcessing, isReleasing } = useContext(AuthContext);
 
   useEffect(() => {
     if (Platform.OS === 'android') {
@@ -21,7 +22,9 @@ export default () => {
 
   return (
     <NavigationContainer>
-      {isProcessing ? (
+      {isReleasing ? (
+        <ReleaseNav />
+      ) : isProcessing ? (
         <ProcessNav />
       ) : isLoggedIn ? (
         <MainNav />
