@@ -1,11 +1,6 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  ScrollView,
-  StyleSheet,
-  Linking,
-} from 'react-native';
+import {View,Text,ScrollView,StyleSheet,Linking,} from 'react-native';
+import CustomFooter from '../components/CustomFooter';
 
 const TermsPolicy = () => {
 
@@ -16,7 +11,7 @@ const TermsPolicy = () => {
   });
 
   const openEmail = () => {
-    Linking.openURL('mailto:support@growfico.com');
+    Linking.openURL('mailto:growficooffical@gmail.com');
   };
 
   return (
@@ -138,7 +133,7 @@ const TermsPolicy = () => {
       </Text>
 
       <View style={{ height: 40 }} />
-
+    <CustomFooter />
     </ScrollView>
   );
 };

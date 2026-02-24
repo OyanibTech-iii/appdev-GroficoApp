@@ -16,8 +16,10 @@ export const AuthProvider = ({ children }) => {
     setIsLoggedIn(false);
   };
 
+  const [isProcessing, setIsProcessing] = useState(false);
+
   return (
-    <AuthContext.Provider value={{ isLoggedIn, user, login, logout }}>
+    <AuthContext.Provider value={{ isLoggedIn, user, login, logout,isProcessing, setIsProcessing }}>
       {children}
     </AuthContext.Provider>
   );

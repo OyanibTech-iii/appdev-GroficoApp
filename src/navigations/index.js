@@ -4,15 +4,16 @@ import { Platform, StatusBar, useColorScheme } from 'react-native';
 
 import AuthNav from './AuthNav';
 import MainNav from './MainNav';
+import ProcessNav from './ProcessNav';
 import { AuthContext } from '../utils/AuthContext';
 
 export default () => {
   const isDarkMode = useColorScheme() === 'dark';
-  const { isLoggedIn } = useContext(AuthContext);
+  const { isLoggedIn, isProcessing } = useContext(AuthContext);
 
   useEffect(() => {
     if (Platform.OS === 'android') {
-      StatusBar.setBackgroundColor('#000000', true);
+      StatusBar.setBackgroundColor('#d2eeca', true);
     }
 
     StatusBar.setBarStyle('dark-content', true);
@@ -20,7 +21,13 @@ export default () => {
 
   return (
     <NavigationContainer>
-      {isLoggedIn ? <MainNav /> : <AuthNav />}
+      {isProcessing ? (
+        <ProcessNav />
+      ) : isLoggedIn ? (
+        <MainNav />
+      ) : (
+        <AuthNav />
+      )}
     </NavigationContainer>
   );
 };

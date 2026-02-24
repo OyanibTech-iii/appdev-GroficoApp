@@ -7,5 +7,6 @@ export default {
   GARDEN2: require('../assets/products/garden2.png'),
   GARDEN3: require('../assets/products/garden3.png'),
   GARDEN4: require('../assets/products/garden4.png'),
+  PROFILE_PIC: require('../assets/images/profile-pic.png'),
 
 };

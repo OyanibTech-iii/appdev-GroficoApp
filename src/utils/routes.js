@@ -8,4 +8,5 @@ export default {
   PROFILE: 'Profile',
   PRODUCT: 'Product',
   TERMS_POLICY: 'TermsPolicy',
+  COURSES: 'Courses',
 };
