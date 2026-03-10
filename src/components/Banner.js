@@ -4,7 +4,7 @@ import { IMG } from '../utils';
 
 const Banner = () => {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', marginTop: 20 }}>
       <View style={{ 
         height: 150, 
         width: 300, 

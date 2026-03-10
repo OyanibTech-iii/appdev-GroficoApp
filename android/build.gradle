@@ -18,4 +18,16 @@ buildscript {
     }
 }
 
+// ADD THIS SECTION BELOW
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        // This tells the app where to find the local Async Storage files
+        maven {
+            url = uri("${project(":react-native-async-storage_async-storage").projectDir}/local_repo")
+        }
+    }
+}
+
 apply plugin: "com.facebook.react.rootproject"

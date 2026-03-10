@@ -9,6 +9,7 @@ import SocialMedia from '../components/SocialMedia';
 import CustomSeachbar from '../components/CustomSeachbar';
 import Banner from '../components/Banner';
 import CustomCarousel from '../components/CustomCarousel';
+import CustomScrollContent from '../components/CustomScrollContent';
 
 
 const HomeScreen = () => {
@@ -36,27 +37,9 @@ const HomeScreen = () => {
       <CustomSeachbar search={search} updateSearch={updateSearch} />
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         <Banner />
-        <Text style={{ fontSize: 12, fontFamily: 'Poppins-Medium', color: '#072d14', marginLeft: 30, textAlign: 'start' }}>Garden Transformed </Text>
+        <Text style={{ marginTop: 30, fontSize: 16, fontFamily: 'Poppins-Medium', color: '#072d14', marginLeft: 30, textAlign: 'start' }}>Garden Transformed </Text>
         <CustomCarousel />
-        <View
-          style={{
-            flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
-            paddingVertical: 50,
-          }}
-        >
-          <Image
-            source={IMG.LOGO}
-            style={{
-              opacity: 0.1,
-              width: 300,
-              height: 300,
-              position: 'absolute',
-            }}
-          />
-
-        </View>
+        <CustomScrollContent />
         <SocialMedia />
         <CustomFooter />
       </ScrollView>

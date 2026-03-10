@@ -22,12 +22,12 @@ const CustomSeachbar = () => {
             backgroundColor: 'transparent',
             borderBottomColor: 'transparent',
             borderTopColor: 'transparent',
-            paddingHorizontal: 20,
+            paddingHorizontal: 30,
           }}
           inputContainerStyle={{
             backgroundColor: '#ffffff',
             borderRadius: 15,
-            height: 40,
+            height: 50,
             elevation: 3, // Shadow for Android
             shadowColor: '#000', // Shadow for iOS
             shadowOffset: { width: 0, height: 2 },
@@ -35,8 +35,10 @@ const CustomSeachbar = () => {
             shadowRadius: 4,
           }}
           inputStyle={{
+            textAlignVertical: 'center',
+            textAlign: 'center',
             fontFamily: 'Poppins-Regular',
-            fontSize: 12,
+            fontSize: 14,
             color: '#0f3a03',
           }}
           leftIconContainerStyle={{ marginLeft: 10 }}
