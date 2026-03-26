@@ -3,6 +3,9 @@ export default {
   LOGO: require('../assets/images/SECONDARY- Brand Logo.png'),
   PRIMARYLOGO: require('../assets/images/Primary.png'),
   BACKGROUND: require('../assets/images/no-bg.png'),
+  BANNER2: require('../assets/images/harvest.png'),
+  BANNER3: require('../assets/images/building.png'),
+  BANNER4: require('../assets/images/prod.png'),
   BANNER: require('../assets/images/banner.png'),
   DECO: require('../assets/images/login-deco2.png'),
   DECO2: require('../assets/images/register-deco.png'),
@@ -13,7 +16,7 @@ export default {
   GARDEN4: require('../assets/products/garden4.png'),
   GARDEN5: require('../assets/products/lemon.png'),
   GARDEN6: require('../assets/products/mango.png'),
-  
+
   ORGANIC1: require('../assets/images/organic (1).png'),
   ORGANIC2: require('../assets/images/organic (2).png'),
   ORGANIC3: require('../assets/images/organic (3).png'),

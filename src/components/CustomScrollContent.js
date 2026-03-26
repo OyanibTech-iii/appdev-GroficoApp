@@ -4,7 +4,7 @@ import React from 'react';
 
 const CustomScrollContent = () => {
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: '#fff' }}>
+    <ScrollView style={{ flex: 1, backgroundColor: '#f9f9f9' }}>
       
       {/* --- Main Hero Section --- */}
       <View style={{
@@ -12,7 +12,7 @@ const CustomScrollContent = () => {
         alignItems: 'center',
         justifyContent: 'space-between',
         paddingHorizontal: 25,
-        backgroundColor: '#f3f8f4', // Soft mint background
+        backgroundColor: '#e0f7e9', 
         margin: 15,
         borderRadius: 25,
         height: 180,
@@ -52,7 +52,7 @@ const CustomScrollContent = () => {
             padding: 10,
             borderRadius: 15,
             borderWidth: 1,
-            borderColor: '#f0f0f0', // Very light border for definition
+            borderColor: '#f0f0f0', 
           }}>
             {/* Image Circle Container */}
             <View style={{

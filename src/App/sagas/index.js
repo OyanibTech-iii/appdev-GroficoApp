@@ -1,7 +1,7 @@
 
 import { all } from 'redux-saga/effects';
-import { userLogin, watchUserRegister } from './auth';
+import { userLogin, watchUserRegister, watchGetProducts, watchGetStocks, watchGetUsers } from './auth';
 
 export default function* rootSaga() {
-  yield all([userLogin(), watchUserRegister()]);
+  yield all([userLogin(), watchUserRegister(), watchGetProducts(), watchGetStocks(), watchGetUsers()]);
 }

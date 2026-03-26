@@ -1,4 +1,6 @@
 import React, { createContext, useState, useContext } from 'react';
+import { useDispatch } from 'react-redux';
+import { LOGIN_RESET } from '../App/actions';
 
 export const AuthContext = createContext();
 
@@ -11,6 +13,7 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }) => {
+  const dispatch = useDispatch();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null); 
   const [isProcessing, setIsProcessing] = useState(false);
@@ -23,6 +26,8 @@ export const AuthProvider = ({ children }) => {
 
   const logout = () => {
     setIsReleasing(true);
+    dispatch({ type: LOGIN_RESET });
+
     setTimeout(() => {
       setUser(null);
       setIsLoggedIn(false);

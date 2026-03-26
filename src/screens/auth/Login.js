@@ -37,13 +37,13 @@ const Login = () => {
   };
   const authState = useSelector(state => state.auth);
   useEffect(() => {
-    console.log("Current Email State:", email);
-    console.log("Current Password State:", password);
+    // console.log("Current Email State:", email);
+    // console.log("Current Password State:", password);
   }, [email, password]);
 
   useEffect(() => {
     if (authState.data) {
-      console.log("Successfully retrieved data from API:", authState.data);
+        console.log("Successfully retrieved data from API:", authState.data);
     }
   }, [authState.data]);
   // Reset login state on component mount
@@ -54,7 +54,7 @@ const Login = () => {
 
   // Handle Success Logic
   useEffect(() => {
-    console.log('Login state:', { data, isLoading, isError, errorMessage });
+    // console.log('Login state:', { data, isLoading, isError, errorMessage });
 
     if (didSubmitRef.current && data && !isLoading && !isError && !successShownRef.current) {
       successShownRef.current = true;
@@ -66,7 +66,7 @@ const Login = () => {
 
   useEffect(() => {
     if (didSubmitRef.current && isError && !isLoading) {
-      console.log('data:', data);
+      // console.log('data:', data);
       // console.error('Login Error:', errorMessage);
       showAlert('Login Error', errorMessage || 'Invalid credentials.');
     }

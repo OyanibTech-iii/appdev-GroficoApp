@@ -3,6 +3,7 @@ import { persistReducer, persistStore } from 'redux-persist';
 import createSagaMiddleware from 'redux-saga';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+
 import auth from './auth';
 
 // Config
@@ -21,7 +22,7 @@ const authPersistConfig = {
 
 // Combine Reducers
 const rootReducer = combineReducers({
-  auth: persistReducer(authPersistConfig, auth),
+  auth: persistReducer(authPersistConfig, auth), 
 });
 
 const persistedReducer = persistReducer(rootPersistConfig, rootReducer);

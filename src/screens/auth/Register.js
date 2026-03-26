@@ -14,6 +14,8 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [email, setEmail] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const { registerData, registerLoading, registerError, registerErrorMessage } = useSelector(state => state.auth);
@@ -71,9 +73,19 @@ const Register = () => {
       showAlert('Terms Not Accepted', 'Please accept the Terms and Privacy Policy to proceed.');
       return;
     }
+    if (firstName.trim() === '' || lastName.trim() === '') {
+      showAlert('Missing Information', 'Please enter your first and last name.');
+      return;
+    }
 
     didSubmitRef.current = true;
-    dispatch(userRegister({ email: trimmedEmail, password }));
+    dispatch(userRegister({
+      email: trimmedEmail,
+      password,
+      firstName: firstName.trim(),
+      lastName: lastName.trim()
+    }));
+
   };
 
   return (
@@ -99,13 +111,51 @@ const Register = () => {
       </View>
 
       <View style={{ width: '100%', alignItems: 'center', }}>
-        <Text style={{ fontSize: 16, fontWeight: '600', color: '#1d733b', fontFamily: 'Poppins-Regular', textAlign: 'center', marginBottom: 10 }}>Nurture your garden and track your {"\n"} growth journey with Growfico.</Text>
-
+        <CustomTextInput
+          label={'First Name'}
+          placeholder={'First Name'}
+          placeholderTextColor={'#94b28b'}
+          value={firstName}
+          onChangeText={setFirstName}
+          containerStyle={{ width: '80%', marginBottom: 8 }}
+          labelStyle={{
+            fontSize: 15,
+            color: '#0f3a03',
+            fontWeight: '700',
+            fontFamily: 'Poppins-Medium',
+          }}
+          textStyle={{
+            color: '#47bf24',
+            letterSpacing: .8,
+            fontSize: 12,
+            fontFamily: 'Poppins-Medium',
+          }}
+        />
+        <CustomTextInput
+          label={'Last Name'}
+          placeholder={'Last Name'}
+          placeholderTextColor={'#94b28b'}
+          value={lastName}
+          onChangeText={setLastName}
+          containerStyle={{ width: '80%', marginBottom: 8 }}
+          labelStyle={{
+            fontSize: 15,
+            color: '#0f3a03',
+            fontWeight: '700',
+            fontFamily: 'Poppins-Medium',
+          }}
+          textStyle={{
+            color: '#47bf24',
+            letterSpacing: .8,
+            fontSize: 12,
+            fontFamily: 'Poppins-Medium',
+          }}
+        />
         <CustomTextInput
           label={'Email Address'}
           placeholder={'Email Address'}
           placeholderTextColor={'#94b28b'}
-          value={email} 
+          value={email}
           onChangeText={setEmail}
           containerStyle={{
             width: '80%',
@@ -130,7 +180,7 @@ const Register = () => {
           label={'Password'}
           placeholder={'Password'}
           placeholderTextColor={'#94b28b'}
-          value={password} 
+          value={password}
           onChangeText={setPassword}
           isPassword={true}
           containerStyle={{
@@ -154,7 +204,7 @@ const Register = () => {
           label={'Confirm Password'}
           placeholder={'Confirm Password'}
           placeholderTextColor={'#94b28b'}
-          value={confirmPassword} 
+          value={confirmPassword}
           onChangeText={setConfirmPassword}
           isPassword={true}
           containerStyle={{
@@ -217,7 +267,7 @@ const Register = () => {
           <Text style={{ color: '#1f6908', fontFamily: 'Poppins-Bold', letterSpacing: .5, fontSize: 12 }}>Login</Text>
         </TouchableOpacity>
       </View>
-      <Image
+      {/* <Image
         source={IMG.DECO2}
         resizeMode='contain'
         style={{
@@ -227,7 +277,7 @@ const Register = () => {
           right: 230,
           position: 'absolute',
         }}
-      />
+      /> */}
       <CustomFooter />
     </View>
   );

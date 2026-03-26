@@ -19,11 +19,11 @@ export default () => {
       StatusBar.setBackgroundColor('#F2F2F2', true);
     }
 
-    StatusBar.setBarStyle('dark-content', true);
+    StatusBar.setBarStyle('dark-content', true);  
   }, [isDarkMode]);
 
-  console.log('Auth Data (Redux): ', JSON.stringify(data, null, 2));
-  console.log('Auth User (Context): ', JSON.stringify(user, null, 2));
+  // console.log('Auth Data (Redux): ', JSON.stringify(data, null, 2));
+  // console.log('Auth User (Context): ', JSON.stringify(user, null, 2));
 
   return (
     <NavigationContainer>
