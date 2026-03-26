@@ -41,9 +41,9 @@ const CustomMeatball = () => {
                     }}>
                         <TouchableOpacity 
                             onPress={() => setModalVisible(true)}
-                            style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingVertical: 5 }}
+                            style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', }}
                         >
-                            <Text style={{ color: 'grey', fontWeight: '600' }}>Logout</Text>
+                            <Text style={{ color: 'grey', }}>Logout</Text>
                             <Ionicons name="power-outline" size={16} color="#64748b" />
                         </TouchableOpacity>
                     </View>

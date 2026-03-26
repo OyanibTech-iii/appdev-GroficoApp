@@ -46,7 +46,7 @@ const StatusModal = ({ visible, title, message, onClose, type = 'error' }) => {
               paddingVertical: 10,
               paddingHorizontal: 30,
               borderRadius: 10,
-              backgroundColor: type === 'error' ? '#d32f2f' : '#47bf24'
+              backgroundColor: type === 'error' ? '#d32f2f' : '#0ea242',
             }} 
             onPress={onClose}
           >
@@ -56,7 +56,7 @@ const StatusModal = ({ visible, title, message, onClose, type = 'error' }) => {
             }}>
               OK
             </Text>
-          </TouchableOpacity>
+          </TouchableOpacity>   
         </View>
       </View>
     </Modal>

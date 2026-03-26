@@ -12,6 +12,7 @@ const CustomTextInput = ({
   textStyle,
   placeholderTextColor,
   isPassword = false,
+  onChangeText,
 }) => {
   const { width } = Dimensions.get('window');
   const [showPassword, setShowPassword] = useState(false);
@@ -46,7 +47,8 @@ const CustomTextInput = ({
           <TextInput
             placeholder={placeholder}
             placeholderTextColor={placeholderTextColor}
-            onChangeText={value}
+            value={value}
+            onChangeText={onChangeText}
             secureTextEntry={isPassword && !showPassword}
             autoComplete='off'
             onFocus={handleFocus}
@@ -59,7 +61,7 @@ const CustomTextInput = ({
                 fontFamily: 'Poppins-Medium',
               },
             ]}
-            
+
           />
 
           {isPassword && (

@@ -5,7 +5,7 @@ const CustomFooter = () => {
 
   return (
  
-      <View style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center', paddingBottom: 20 }}>
+      <View style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center', paddingBottom: 10 }}>
         <Text style={{ fontFamily: 'Poppins-Medium', color: '#123e06ce', fontSize: 10 }}>©{new Date().getFullYear()} Growfico. All rights reserved.</Text>
       </View>
 

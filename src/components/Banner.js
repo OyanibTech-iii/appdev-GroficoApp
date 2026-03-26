@@ -2,18 +2,18 @@ import React from 'react';
 import { View, ImageBackground } from 'react-native';
 import { IMG } from '../utils';
 
-const Banner = () => {
+const Banner = ({ imageSource, containerStyle }) => {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <View style={{ 
-        height: 150, 
-        width: 300, 
-        borderRadius: 12, 
-        overflow: 'hidden' 
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', marginTop: 20 }}>
+      <View style={{
+        height: 150,
+        width: 300,
+        borderRadius: 12,
+        overflow: 'hidden'
       }}>
         <ImageBackground
-          source={IMG.BANNER}
-          resizeMode="cover"
+          source={imageSource || IMG.BANNER}
+           resizeMode="cover"
           style={{
             flex: 1,
             justifyContent: 'center',
@@ -22,6 +22,7 @@ const Banner = () => {
           imageStyle={{ opacity: 0.8 }}
         >
         </ImageBackground>
+
       </View>
     </View>
   );

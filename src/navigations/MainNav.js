@@ -12,7 +12,6 @@ const Stack = createStackNavigator();
 const MainNavigation = () => {
   return (
     <Stack.Navigator initialRouteName="TabNav" screenOptions={{ headerShown: false }}>
-      {/* The TabNav becomes the 'root' of your logged-in experience */}
       <Stack.Screen
         name="TabNav"
         component={TabNav}
