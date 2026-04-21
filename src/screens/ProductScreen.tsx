@@ -5,18 +5,17 @@ import { GET_PRODUCTS_REQUEST, GET_STOCKS_REQUEST } from '../App/actions';
 import FilterChips from '../components/FilterChips';
 import ProductCard from '../components/ProductCard';
 
-const EMPTY_ARRAY = [];
+const EMPTY_ARRAY: any[] = [];
 
 const ProductScreen = () => {
     const dispatch = useDispatch();
 
-    const token = useSelector(state => state.auth.token);
-    const productsSlice = useSelector(state => state.auth.products);
-    const stocksSlice = useSelector(state => state.auth.stocks);
-    const productsLoading = useSelector(state => state.auth.productsLoading);
-    const stocksLoading = useSelector(state => state.auth.stocksLoading);
+    const token = useSelector((state: any) => state.auth.token);
+    const productsSlice = useSelector((state: any) => state.auth.products);
+    const stocksSlice = useSelector((state: any) => state.auth.stocks);
+    const productsLoading = useSelector((state: any) => state.auth.productsLoading);
 
-    const normalizeList = (slice) => {
+    const normalizeList = (slice: any) => {
         if (Array.isArray(slice)) return slice;
         if (slice && Array.isArray(slice.data)) return slice.data;
         if (slice && Array.isArray(slice.results)) return slice.results;
@@ -39,12 +38,12 @@ const ProductScreen = () => {
     }, [dispatch, token]); 
 
     const stockTypeByProductId = useMemo(() => {
-        const map = {};
-        allStocks.forEach((stock) => {
+        const map: { [key: string]: any } = {};
+        allStocks.forEach((stock: any) => {
             const stockType = stock?.stockType;
             if (!stockType || !Array.isArray(stock?.products)) return;
 
-            stock.products.forEach((productRef) => {
+            stock.products.forEach((productRef: any) => {
                 // API returns product IRIs like "/api/products/12"
                 if (typeof productRef === 'string') {
                     const productId = productRef.split('/').pop();
@@ -63,7 +62,7 @@ const ProductScreen = () => {
         if (category === 'All Products') {
             return allProducts;
         }
-        return allProducts.filter((product) => {
+        return allProducts.filter((product: any) => {
             const directStockType = product?.stockType;
             if (directStockType) {
                 return directStockType === category;

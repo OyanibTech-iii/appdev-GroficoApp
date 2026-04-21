@@ -9,4 +9,5 @@ export default {
   PRODUCT: 'Product',
   TERMS_POLICY: 'TermsPolicy',
   COURSES: 'Courses',
+  ERRORNAV: 'ErrorNav',
 };

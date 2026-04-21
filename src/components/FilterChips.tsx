@@ -1,12 +1,18 @@
 import React, { useMemo } from 'react';
 import { ScrollView, TouchableOpacity, Text, View, StyleSheet } from 'react-native';
 
-const FilterChips = ({ stocks, activeCategory, onCategoryChange }) => {
+interface FilterChipsProps {
+    stocks: any[];
+    activeCategory: string;
+    onCategoryChange: (category: string) => void;
+}
+
+const FilterChips: React.FC<FilterChipsProps> = ({ stocks, activeCategory, onCategoryChange }) => {
     // Dynamically generate categories from stocks data
     const categories = useMemo(() => {
         if (!stocks || stocks.length === 0) return ['All Products'];
         
-        const uniqueStockTypes = [...new Set(stocks.map(item => item.stockType))];
+        const uniqueStockTypes = [...new Set(stocks.map((item: any) => item.stockType))];
         
         return ['All Products', ...uniqueStockTypes];
     }, [stocks]);
@@ -18,7 +24,7 @@ const FilterChips = ({ stocks, activeCategory, onCategoryChange }) => {
                 showsHorizontalScrollIndicator={false}
                 contentContainerStyle={styles.scrollContent}
             >
-                {categories.map((cat) => {
+                {categories.map((cat: any) => {
                     const isActive = activeCategory === cat;
 
                     return (
@@ -28,7 +34,7 @@ const FilterChips = ({ stocks, activeCategory, onCategoryChange }) => {
                             activeOpacity={0.7}
                             style={[
                                 styles.chip,
-                                isActive ? styles.activeChip : styles.inactiveChip,
+                                isActive ? (styles.activeChip as any) : (styles.inactiveChip as any),
                             ]}
                         >
                             <Text
@@ -36,7 +42,7 @@ const FilterChips = ({ stocks, activeCategory, onCategoryChange }) => {
                                 ellipsizeMode="tail"
                                 style={[
                                     styles.chipLabel,
-                                    isActive ? styles.activeChipLabel : styles.inactiveChipLabel,
+                                    isActive ? (styles.activeChipLabel as any) : (styles.inactiveChipLabel as any),
                                 ]}
                             >
                                 {cat.charAt(0).toUpperCase() + cat.slice(1)}

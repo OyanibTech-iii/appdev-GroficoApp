@@ -3,7 +3,6 @@ import { Image, Text, View, TouchableOpacity, ScrollView } from 'react-native';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import { useDispatch, useSelector } from 'react-redux';
 import { GET_USERS_REQUEST } from '../App/actions';
-import { IMG } from '../utils';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import CustomFooter from '../components/CustomFooter';
 import CustomMeatball from '../components/CustomMeatball';
@@ -11,9 +10,9 @@ import { AuthContext } from '../utils/AuthContext';
 
 const ProfileScreen = () => {
   const dispatch = useDispatch();
-  const { user } = useContext(AuthContext);
-  const token = useSelector((state) => state.auth.token);
-  const usersSlice = useSelector((state) => state.auth.users);
+  const { user } = useContext(AuthContext) as any;
+  const token = useSelector((state: any) => state.auth.token);
+  const usersSlice = useSelector((state: any) => state.auth.users);
   const tabBarHeight = useBottomTabBarHeight();
 
   useEffect(() => {
@@ -23,7 +22,7 @@ const ProfileScreen = () => {
   }, [dispatch, token]);
 
   const currentUser = useMemo(() => {
-    const normalizeList = (slice) => {
+    const normalizeList = (slice: any) => {
       if (Array.isArray(slice)) return slice;
       if (slice && Array.isArray(slice.data)) return slice.data;
       if (slice && Array.isArray(slice.results)) return slice.results;
@@ -36,7 +35,7 @@ const ProfileScreen = () => {
     const loginEmail = loginUser.email || loginUser.username || '';
 
     const matched =
-      users.find((item) => {
+      users.find((item: any) => {
         const apiEmail = item?.email || item?.username || '';
         return apiEmail && loginEmail && apiEmail === loginEmail;
       }) || loginUser;

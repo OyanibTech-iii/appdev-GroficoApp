@@ -1,6 +1,21 @@
-import { Dimensions, Text, TouchableOpacity, View, ActivityIndicator } from 'react-native';
+import React from 'react';
+import { Dimensions, Text, TouchableOpacity, View, ActivityIndicator, StyleProp, ViewStyle, TextStyle } from 'react-native';
 
-const CustomButton = ({ containerStyle, label, textStyle, onPress, loading = false }) => {
+interface CustomButtonProps {
+  containerStyle?: StyleProp<ViewStyle>;
+  label: string;
+  textStyle?: StyleProp<TextStyle>;
+  onPress?: () => void;
+  loading?: boolean;
+}
+
+const CustomButton: React.FC<CustomButtonProps> = ({ 
+  containerStyle, 
+  label, 
+  textStyle, 
+  onPress, 
+  loading = false 
+}) => {
   const { width } = Dimensions.get('window');
 
   return (

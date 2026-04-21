@@ -3,7 +3,11 @@ import { View, Text, Image, StyleSheet, Dimensions } from 'react-native';
 
 const { width } = Dimensions.get('window');
 
-const ProductCard = ({ item }) => {
+interface ProductCardProps {
+    item: any;
+}
+
+const ProductCard: React.FC<ProductCardProps> = ({ item }) => {
     // Correctly mapping to Symfony entity properties
     const isOutOfStock = !item.isAvailable; // Based on Product.php
 
@@ -64,4 +68,4 @@ const styles = StyleSheet.create({
     detailsBtn: { fontSize: 11, fontWeight: 'bold', color: '#0f3a03' },
 });
 
-export default ProductCard;                
+export default ProductCard;

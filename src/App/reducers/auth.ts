@@ -43,7 +43,7 @@ const INITIAL_STATE = {
   usersError: null,
 };
 
-export default function reducer(state = INITIAL_STATE, action : string ) {
+export default function reducer(state = INITIAL_STATE, action: any) {
   console.log(action.type);
   switch (action.type) {
 
@@ -143,7 +143,7 @@ export default function reducer(state = INITIAL_STATE, action : string ) {
   }
 }
 
-export const userLogin = payload => ({
+export const userLogin = (payload: any) => ({
   type: USER_LOGIN,
   payload,
 });
@@ -153,7 +153,7 @@ export const resetLogin = () => ({
   type: USER_LOGIN_RESET
 });
 
-export const userRegister = payload => ({
+export const userRegister = (payload: any) => ({
   type: USER_REGISTER,
   payload,
 });
@@ -162,17 +162,17 @@ export const resetRegister = () => ({
   type: USER_REGISTER_RESET,
 });
 
-export const getProducts = (payload) => ({
+export const getProducts = (payload: any) => ({
   type: GET_PRODUCTS_REQUEST,
   payload,
 });
 
-export const getStocks = (payload) => ({
+export const getStocks = (payload: any) => ({
   type: GET_STOCKS_REQUEST,
   payload,
 });
 
-export const getUsers = (payload) => ({
+export const getUsers = (payload: any) => ({
   type: GET_USERS_REQUEST,
   payload,
 });

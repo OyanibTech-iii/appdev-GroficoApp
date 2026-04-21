@@ -1,5 +1,5 @@
-import React, { useContext, useMemo, useState } from 'react';
-import { Text, View, ScrollView, Linking } from 'react-native';
+import React, { useContext, useMemo, useState, useEffect } from 'react';
+import { Text, View, ScrollView, Linking, TextStyle } from 'react-native';
 import { AuthContext } from '../utils/AuthContext';
 import { IMG } from '../utils';
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,18 +14,9 @@ import CustomScrollContent from '../components/CustomScrollContent';
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
-  const { user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext) as any;
   const token = useSelector((state: { auth: { token: string } }) => state.auth.token);
-  const usersSlice = useSelector((state: { auth: { users: unknown } }) => state.auth.users);
-
-  const openLink = async (url : string) => {
-    const supported = await Linking.canOpenURL(url);
-    if (supported) {
-      await Linking.openURL(url);
-    } else {
-      console.log("Don't know how to open this URL: " + url);
-    }
-  };
+  const usersSlice = useSelector((state: { auth: { users: any } }) => state.auth.users);
 
   const [search, setSearch] = useState('');
 
@@ -33,14 +24,14 @@ const HomeScreen = () => {
     setSearch(value);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (token) {
       dispatch({ type: GET_USERS_REQUEST, payload: token });
     }
   }, [dispatch, token]);
 
   const welcomeMessage = useMemo(() => {
-    const normalizeList = (slice: { data?: undefined[]; results?: unknown[]; 'hydra:member'?: unknown[] }) => {
+    const normalizeList = (slice: any) => {
       if (Array.isArray(slice)) return slice;
       if (slice && Array.isArray(slice.data)) return slice.data;
       if (slice && Array.isArray(slice.results)) return slice.results;
@@ -51,7 +42,7 @@ const HomeScreen = () => {
     const users = normalizeList(usersSlice);
     const loginUser = user?.user || user || {};
     const loginEmail = loginUser.email || loginUser.username || '';
-    const matchedUser = users.find((u) => {
+    const matchedUser = users.find((u: any) => {
       const userEmail = u?.email || u?.username || '';
       return userEmail && loginEmail && userEmail === loginEmail;
     }) || loginUser;
@@ -86,7 +77,7 @@ const HomeScreen = () => {
         <Banner imageSource={IMG.BANNER4} />
         <Banner />
 
-        <Text style={{ marginTop: 30, fontSize: 16, fontFamily: 'Poppins-Medium', color: '#072d14', marginLeft: 30, textAlign: 'start' }}>Garden Transformed </Text>
+        <Text style={{ marginTop: 30, fontSize: 16, fontFamily: 'Poppins-Medium', color: '#072d14', marginLeft: 30, textAlign: 'left' as TextStyle['textAlign'] }}>Garden Transformed </Text>
         <CustomCarousel />
         <CustomScrollContent />
         <SocialMedia />

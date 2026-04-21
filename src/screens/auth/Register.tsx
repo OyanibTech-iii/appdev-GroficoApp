@@ -20,12 +20,16 @@ const Register = () => {
   const dispatch = useDispatch();
   const { registerData, registerLoading, registerError, registerErrorMessage } = useSelector((state: any) => state.auth);
   const [modalVisible, setModalVisible] = useState(false);
-  const [modalContent, setModalContent] = useState({ title: '', message: '', type: 'error' });
+  const [modalContent, setModalContent] = useState<{
+    title: string;
+    message: string;
+    type: 'error' | 'success';
+  }>({ title: '', message: '', type: 'error' });
   const [isChecked, setIsChecked] = useState(false);
   const successShownRef = useRef(false);
   const didSubmitRef = useRef(false);
 
-  const showAlert = (title: string, message: string, type: string = 'error') => {
+  const showAlert = (title: string, message: string, type: 'error' | 'success' = 'error') => {
     setModalContent({ title, message, type });
     setModalVisible(true);
   };
@@ -185,7 +189,6 @@ const Register = () => {
           isPassword={true}
           containerStyle={{
             width: '80%',
-            fontFamily: 'Poppins-Medium',
           }}
           labelStyle={{
             fontSize: 15,
@@ -209,7 +212,6 @@ const Register = () => {
           isPassword={true}
           containerStyle={{
             width: '80%',
-            fontFamily: 'Poppins-Medium',
           }}
           labelStyle={{
             marginTop: 8,
@@ -246,7 +248,6 @@ const Register = () => {
             width: '80%',
             backgroundColor: '#47bf24',
             borderRadius: 10,
-            fontFamily: 'Poppins-Medium',
           }}
           textStyle={{
             color: '#ffffff',

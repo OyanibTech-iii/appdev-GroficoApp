@@ -1,13 +1,15 @@
 import React from 'react';
 import { Modal, View, Text, TouchableOpacity } from 'react-native';
 
-const StatusModal = ({
-  visible? : boolean, 
-  title: string,
-   message: string, 
-   onClose : boolean, 
-   type = 'error'
- }) => {
+interface StatusModalProps {
+  visible: boolean;
+  title: string;
+  message: string;
+  onClose: () => void;
+  type?: 'error' | 'success';
+}
+
+const StatusModal: React.FC<StatusModalProps> = ({visible , title, message, onClose, type = 'error' }) => {
   return (
     <Modal transparent visible={visible} animationType="fade">
       <View style={{
