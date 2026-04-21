@@ -18,6 +18,47 @@ const ReleaseNav = () => {
 
   const spin = spinValue.interpolate({
     inputRange: [0, 1],
+    outputRange: ['0deg', '360deg'],
+  });
+
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#ffffff' }}>
+      <Animated.Image
+        source={IMG.LOGO}
+        style={{
+          width: 200,
+          height: 200,
+          transform: [{ rotate: spin }],
+        }}
+      />
+      <Text style={{ marginTop: 20, fontSize: 16, color: '#0f3a03', fontFamily: 'Poppins-Medium' }}>
+        Releasing...
+      </Text>
+    </View>
+  );
+};
+
+export default ReleaseNav;
+import React, { useEffect, useRef } from 'react';
+import { View, Text, Image, Animated, Easing } from 'react-native';
+import { IMG } from '../utils';
+
+const ReleaseNav = () => {
+  const spinValue = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    Animated.loop(
+      Animated.timing(spinValue, {
+        toValue: 1,
+        duration: 4000,
+        easing: Easing.linear,
+        useNativeDriver: true,
+      })
+    ).start();
+  }, [spinValue]);
+
+  const spin = spinValue.interpolate({
+    inputRange: [0, 1],
     outputRange: ['360deg', '0deg'], // Reverse spin for logout
   });
 

@@ -24,7 +24,6 @@ import {
 
 const INITIAL_STATE = {
   data: null,
-  // Token returned by the login API (used for authorized /products and /stocks calls)
   token: null,
   isLoading: false,
   isError: false,
@@ -44,7 +43,7 @@ const INITIAL_STATE = {
   usersError: null,
 };
 
-export default function reducer(state = INITIAL_STATE, action) {
+export default function reducer(state = INITIAL_STATE, action : string ) {
   console.log(action.type);
   switch (action.type) {
 

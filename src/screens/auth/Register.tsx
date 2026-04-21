@@ -18,14 +18,14 @@ const Register = () => {
   const [lastName, setLastName] = useState('');
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const { registerData, registerLoading, registerError, registerErrorMessage } = useSelector(state => state.auth);
+  const { registerData, registerLoading, registerError, registerErrorMessage } = useSelector((state: any) => state.auth);
   const [modalVisible, setModalVisible] = useState(false);
   const [modalContent, setModalContent] = useState({ title: '', message: '', type: 'error' });
   const [isChecked, setIsChecked] = useState(false);
   const successShownRef = useRef(false);
   const didSubmitRef = useRef(false);
 
-  const showAlert = (title, message, type = 'error') => {
+  const showAlert = (title: string, message: string, type: string = 'error') => {
     setModalContent({ title, message, type });
     setModalVisible(true);
   };
@@ -101,7 +101,7 @@ const Register = () => {
           setModalVisible(false);
           if (modalContent.type === 'success') {
             dispatch(resetRegister());
-            navigation.navigate(ROUTES.LOGIN);
+            (navigation as any).navigate(ROUTES.LOGIN);
           }
         }}
       />
@@ -234,7 +234,7 @@ const Register = () => {
           <Text style={{ fontFamily: 'Poppins-Medium', color: '#0f3a03', fontSize: 12 }}>I agree to the</Text>
           <TouchableOpacity
             style={{ marginLeft: 5, }}
-            onPress={() => navigation.navigate(ROUTES.TERMS_POLICY)}
+            onPress={() => (navigation as any).navigate(ROUTES.TERMS_POLICY)}
           >
             <Text style={{ color: '#1f6908', fontFamily: 'Poppins-Bold', letterSpacing: .5, fontSize: 12 }}>Terms and Privacy Policy</Text>
           </TouchableOpacity>
@@ -262,11 +262,13 @@ const Register = () => {
         <Text style={{ fontFamily: 'Poppins-Medium', color: '#0f3a03', fontSize: 12 }}>Already have an account?</Text>
         <TouchableOpacity
           style={{ marginLeft: 5 }}
-          onPress={() => navigation.navigate(ROUTES.LOGIN)}
+          onPress={() => (navigation as any).navigate(ROUTES.LOGIN)}
         >
           <Text style={{ color: '#1f6908', fontFamily: 'Poppins-Bold', letterSpacing: .5, fontSize: 12 }}>Login</Text>
         </TouchableOpacity>
       </View>
+
+      {/* basta watermark ni */}
       {/* <Image
         source={IMG.DECO2}
         resizeMode='contain'
