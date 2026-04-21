@@ -1,10 +1,8 @@
 import React from 'react';
-import { View, Text, ScrollView, Image, TouchableOpacity, Dimensions } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import CustomFooter from '../components/CustomFooter';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
-const { width } = Dimensions.get('window');
 
 const CoursesScreen = () => {
   return (

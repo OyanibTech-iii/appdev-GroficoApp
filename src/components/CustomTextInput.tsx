@@ -1,9 +1,21 @@
-import { useState, useRef } from 'react';
-import { Dimensions, Text, View, TouchableOpacity, Animated, } from 'react-native';
+import React, { useState, useRef } from 'react';
+import { Dimensions, Text, View, TouchableOpacity, Animated, StyleProp, ViewStyle, TextStyle } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-const CustomTextInput = ({
+interface CustomTextInputProps {
+  placeholder?: string;
+  label?: string;
+  labelStyle?: StyleProp<TextStyle>;
+  value?: string;
+  containerStyle?: StyleProp<ViewStyle>;
+  textStyle?: StyleProp<TextStyle>;
+  placeholderTextColor?: string;
+  isPassword?: boolean;
+  onChangeText?: (text: string) => void;
+}
+
+const CustomTextInput: React.FC<CustomTextInputProps> = ({
   placeholder,
   label,
   labelStyle,
@@ -14,14 +26,11 @@ const CustomTextInput = ({
   isPassword = false,
   onChangeText,
 }) => {
-  const { width } = Dimensions.get('window');
   const [showPassword, setShowPassword] = useState(false);
-  const [isFocused, setIsFocused] = useState(false);
 
   const animatedValue = useRef(new Animated.Value(0)).current;
 
   const handleFocus = () => {
-    setIsFocused(true);
     Animated.timing(animatedValue, {
       toValue: 1,
       duration: 480,
@@ -30,7 +39,6 @@ const CustomTextInput = ({
   };
 
   const handleBlur = () => {
-    setIsFocused(false);
     Animated.timing(animatedValue, {
       toValue: 0,
       duration: 250,
@@ -40,7 +48,7 @@ const CustomTextInput = ({
 
   return (
     <View style={containerStyle}>
-      <Text style={labelStyle}>{label}</Text>
+      {label && <Text style={labelStyle}>{label}</Text>}
 
       <View>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -54,7 +62,7 @@ const CustomTextInput = ({
             onFocus={handleFocus}
             onBlur={handleBlur}
             style={[
-              textStyle,
+              textStyle as any,
               {
                 flex: 1,
                 paddingBottom: 8,
@@ -95,7 +103,7 @@ const CustomTextInput = ({
             backgroundColor: '#16a34a',
             transform: [
               {
-                scaleX: animatedValue,
+                scaleX: animatedValue as any,
               },
             ],
             alignSelf: 'center',

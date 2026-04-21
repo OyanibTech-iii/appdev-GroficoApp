@@ -4,7 +4,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { AuthContext } from '../utils/AuthContext';
 
 const CustomMeatball = () => {
-    const { logout } = useContext(AuthContext);
+    const { logout} = useContext(AuthContext);
     const [menuVisible, setMenuVisible] = useState(false);
     const [modalVisible, setModalVisible] = useState(false);
 

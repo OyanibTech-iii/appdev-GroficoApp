@@ -1,8 +1,8 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, ReactNode } from 'react';
 import { useDispatch } from 'react-redux';
 import { LOGIN_RESET } from '../App/actions';
 
-export const AuthContext = createContext();
+export const AuthContext = createContext<any>(null);
 
 export const useAuth = () => {
   const context = useContext(AuthContext);
@@ -12,14 +12,18 @@ export const useAuth = () => {
   return context;
 };
 
-export const AuthProvider = ({ children }) => {
+interface AuthProviderProps {
+  children: ReactNode;
+}
+
+export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const dispatch = useDispatch();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState(null); 
+  const [user, setUser] = useState<any>(null); 
   const [isProcessing, setIsProcessing] = useState(false);
   const [isReleasing, setIsReleasing] = useState(false);
 
-  const login = (userData) => {
+  const login = (userData: any) => {
     setUser(userData);
     setIsLoggedIn(true);
   };
@@ -35,6 +39,10 @@ export const AuthProvider = ({ children }) => {
     }, 1500); 
   };
 
+  const resetLogin = () => {
+      // Logic for resetLogin if needed, or it might be coming from actions
+  };
+
   return (
     <AuthContext.Provider 
       value={{
@@ -45,7 +53,8 @@ export const AuthProvider = ({ children }) => {
         isProcessing, 
         setIsProcessing,
         isReleasing, 
-        setIsReleasing 
+        setIsReleasing,
+        resetLogin
       }}
     >
       {children}

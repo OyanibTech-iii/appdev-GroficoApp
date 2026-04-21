@@ -1,3 +1,4 @@
+import React from 'react';
 import { useContext, useState, useEffect, useRef } from 'react';
 import { Text, TouchableOpacity, View, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
@@ -17,10 +18,14 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
-  const [modalContent, setModalContent] = useState({ title: '', message: '', type: '' });
+  const [modalContent, setModalContent] = useState<{
+    title: string;
+    message: string;
+    type: 'error' | 'success';
+  }>({ title: '', message: '', type: 'error' });
 
   // --- CONTEXT & REDUX ---
-  const { login, setIsProcessing } = useContext(AuthContext);
+  const { login, setIsProcessing } = useContext(AuthContext) as any;
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
@@ -31,7 +36,7 @@ const Login = () => {
   const successShownRef = useRef(false);
   const didSubmitRef = useRef(false);
 
-  const showAlert = (title: string, message: string, type: string = 'error') => {
+  const showAlert = (title: string, message: string, type: 'error' | 'success' = 'error') => {
     setModalContent({ title, message, type });
     setModalVisible(true);
   };
@@ -138,7 +143,6 @@ const Login = () => {
           isPassword={true}
           containerStyle={{
             width: '80%',
-            fontFamily: 'Poppins-Medium',
           }}
           labelStyle={{
             fontSize: 15,
@@ -163,7 +167,6 @@ const Login = () => {
           width: '80%',
           backgroundColor: '#47bf24',
           borderRadius: 10,
-          fontFamily: 'Poppins-Medium',
         }}
         textStyle={{
           color: '#ffffff',

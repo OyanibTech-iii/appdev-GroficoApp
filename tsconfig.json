@@ -1,20 +1,22 @@
 {
   "extends": "./node_modules/@react-native/typescript-config/tsconfig.json",
   "compilerOptions": {
-    "jsx": "react-native", 
-    "strict": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
     },
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
+    "jsx": "react-native",
+    "strict": true,
+    "allowJs": true,
     "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
     "ignoreDeprecations": "6.0"
   },
   "include": [
-    "src/**/*",    
-    "index.js", 
+    "src/**/*",
+    "index.js",
     "App.tsx"
   ]
 }
