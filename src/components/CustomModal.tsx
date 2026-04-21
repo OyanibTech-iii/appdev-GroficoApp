@@ -1,7 +1,13 @@
 import React from 'react';
 import { Modal, View, Text, TouchableOpacity } from 'react-native';
 
-const StatusModal = ({ visible, title, message, onClose, type = 'error' }) => {
+const StatusModal = ({
+  visible? : boolean, 
+  title: string,
+   message: string, 
+   onClose : boolean, 
+   type = 'error'
+ }) => {
   return (
     <Modal transparent visible={visible} animationType="fade">
       <View style={{
@@ -28,7 +34,7 @@ const StatusModal = ({ visible, title, message, onClose, type = 'error' }) => {
             marginBottom: 10,
             color: type === 'error' ? '#d32f2f' : '#0ea242'
           }}>
-            {title}
+            {title }
           </Text>
 
           <Text style={{

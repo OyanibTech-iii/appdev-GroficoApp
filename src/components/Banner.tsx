@@ -2,7 +2,7 @@ import React from 'react';
 import { View, ImageBackground } from 'react-native';
 import { IMG } from '../utils';
 
-const Banner = ({ imageSource, containerStyle }) => {
+const Banner = ({ imageSource, containerStyle }: { imageSource?: string; containerStyle?: any }) => {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', marginTop: 20 }}>
       <View style={{

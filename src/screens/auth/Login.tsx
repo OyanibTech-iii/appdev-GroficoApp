@@ -25,17 +25,17 @@ const Login = () => {
   const dispatch = useDispatch();
 
   // Select login state from Redux
-  const { isLoading, data, isError, errorMessage } = useSelector(state => state.auth);
+  const { isLoading, data, isError, errorMessage } = useSelector((state: any) => state.auth);
 
   // --- REFS ---
   const successShownRef = useRef(false);
   const didSubmitRef = useRef(false);
 
-  const showAlert = (title, message, type = 'error') => {
+  const showAlert = (title: string, message: string, type: string = 'error') => {
     setModalContent({ title, message, type });
     setModalVisible(true);
   };
-  const authState = useSelector(state => state.auth);
+  const authState = useSelector((state: any) => state.auth);
   useEffect(() => {
     // console.log("Current Email State:", email);
     // console.log("Current Password State:", password);
@@ -68,7 +68,8 @@ const Login = () => {
     if (didSubmitRef.current && isError && !isLoading) {
       // console.log('data:', data);
       // console.error('Login Error:', errorMessage);
-      showAlert('Login Error', errorMessage || 'Invalid credentials.');
+      // showAlert('Login Error', errorMessage || 'Invalid credentials.');
+
     }
   }, [isError, isLoading, errorMessage]);
 
@@ -189,7 +190,7 @@ const Login = () => {
         </Text>
         <TouchableOpacity
           style={{ marginLeft: 5 }}
-          onPress={() => navigation.navigate(ROUTES.REGISTER)}
+          onPress={() => (navigation as any).navigate(ROUTES.REGISTER)}
         >
           <Text style={{ color: '#1f6908', fontFamily: 'Poppins-Bold', letterSpacing: 0.5, fontSize: 12 }}>
             Register

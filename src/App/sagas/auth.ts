@@ -1,3 +1,4 @@
+import { SagaIterator } from 'redux-saga';
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { authLogin, userRegister, getProducts, getStocks, getUsers } from '../api/auth';
 
@@ -20,7 +21,7 @@ import {
   GET_USERS_REQUEST,
   GET_USERS_FAILURE,
 } from '../actions';
-export function* userLoginAsync(action) {
+export function* userLoginAsync(action: { payload: { email: string; password: string; }; }):SagaIterator {
   yield put({ type: USER_LOGIN_REQUEST });
   try {
     const data = yield call(authLogin, action.payload);
@@ -34,7 +35,7 @@ export function* userLoginAsync(action) {
     yield put({ type: USER_LOGIN_ERROR, payload: error.message });
   }
 }
-export function* userRegisterAsync(action) {
+export function* userRegisterAsync(action: { payload: { email: string; password: string; firstName: string; lastName: string; }; }) {
   yield put({ type: USER_REGISTER_REQUEST });
   try {
     const response = yield call(userRegister, action.payload);
@@ -45,7 +46,7 @@ export function* userRegisterAsync(action) {
   }
 }
 
-export function* getProductsAsync(action) {
+export function* getProductsAsync(action: { payload: string; }) {
   try {
     const data = yield call(getProducts, action.payload);
     yield put({ type: GET_PRODUCTS_SUCCESS, payload: data });
@@ -54,7 +55,7 @@ export function* getProductsAsync(action) {
   }
 }
 
-export function* getStocksAsync(action) {
+export function* getStocksAsync(action: { payload: string; }) {
   try {
     const data = yield call(getStocks, action.payload);
     yield put({ type: GET_STOCKS_SUCCESS, payload: data });
@@ -63,7 +64,7 @@ export function* getStocksAsync(action) {
   }
 }
 
-export function* getUsersAsync(action) {
+export function* getUsersAsync(action: { payload: string; }) {
   try {
     const data = yield call(getUsers, action.payload);
     yield put({ type: GET_USERS_SUCCESS, payload: data });

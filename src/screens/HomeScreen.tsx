@@ -15,10 +15,10 @@ import CustomScrollContent from '../components/CustomScrollContent';
 const HomeScreen = () => {
   const dispatch = useDispatch();
   const { user } = useContext(AuthContext);
-  const token = useSelector((state) => state.auth.token);
-  const usersSlice = useSelector((state) => state.auth.users);
+  const token = useSelector((state: { auth: { token: string } }) => state.auth.token);
+  const usersSlice = useSelector((state: { auth: { users: unknown } }) => state.auth.users);
 
-  const openLink = async (url) => {
+  const openLink = async (url : string) => {
     const supported = await Linking.canOpenURL(url);
     if (supported) {
       await Linking.openURL(url);
@@ -29,7 +29,7 @@ const HomeScreen = () => {
 
   const [search, setSearch] = useState('');
 
-  const updateSearch = (value) => {
+  const updateSearch = (value : string) => {
     setSearch(value);
   };
 
@@ -40,7 +40,7 @@ const HomeScreen = () => {
   }, [dispatch, token]);
 
   const welcomeMessage = useMemo(() => {
-    const normalizeList = (slice) => {
+    const normalizeList = (slice: { data?: undefined[]; results?: unknown[]; 'hydra:member'?: unknown[] }) => {
       if (Array.isArray(slice)) return slice;
       if (slice && Array.isArray(slice.data)) return slice.data;
       if (slice && Array.isArray(slice.results)) return slice.results;

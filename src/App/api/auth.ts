@@ -8,7 +8,7 @@ const options = {
   },
 };
 
-export async function authLogin({ email, password }) {
+export async function authLogin({ email, password }: { email: string; password: string }) {
   const response = await fetch(BASE_URL + '/login', {
     method: 'POST',
     ...options,
@@ -26,7 +26,7 @@ export async function authLogin({ email, password }) {
   }
 
 }
-export async function userRegister({ email, password, firstName, lastName }) {
+export async function userRegister({ email, password, firstName, lastName }: { email: string; password: string; firstName: string; lastName: string }) {
   const response = await fetch(BASE_URL + '/register', {
     method: 'POST',
     ...options,
@@ -46,7 +46,7 @@ export async function userRegister({ email, password, firstName, lastName }) {
   }
 }
 
-export const getProducts = async (token) => {
+export const getProducts = async (token: string) => {
   const response = await fetch(BASE_URL + '/products', {
     method: 'GET',
     headers: {
@@ -62,7 +62,7 @@ export const getProducts = async (token) => {
   return await response.json();
 };
 
-export const getStocks = async (token) => {
+export const getStocks = async (token: string) => {
   const response = await fetch(`${BASE_URL}/stocks`, {
     method: 'GET',
     headers: {
@@ -79,7 +79,7 @@ export const getStocks = async (token) => {
   return await response.json();
 };
 
-export const getUsers = async (token) => {
+export const getUsers = async (token: string) => {
   const response = await fetch(`${BASE_URL}/users`, {
     method: 'GET',
     headers: {
