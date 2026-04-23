@@ -7,6 +7,7 @@ interface CustomButtonProps {
   textStyle?: StyleProp<TextStyle>;
   onPress?: () => void;
   loading?: boolean;
+  icon?: React.ReactNode;
 }
 
 const CustomButton: React.FC<CustomButtonProps> = ({ 
@@ -14,18 +15,33 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   label, 
   textStyle, 
   onPress, 
-  loading = false 
+  loading = false,
+  icon
 }) => {
   const { width } = Dimensions.get('window');
+
+  // Extract background color from containerStyle if it exists
+  const flatStyle = containerStyle ? (Array.isArray(containerStyle) ? Object.assign({}, ...containerStyle) : containerStyle) : {};
+  const backgroundColor = flatStyle.backgroundColor || '#16a34a';
 
   return (
     <View style={containerStyle}>
       <TouchableOpacity onPress={loading ? undefined : onPress} disabled={loading}>
-        <View style={{ padding: width * 0.014, borderRadius: 10, backgroundColor: '#16a34a' }}>
+        <View style={{ 
+          padding: width * 0.014, 
+          borderRadius: 10, 
+          backgroundColor, 
+          flexDirection: 'row', 
+          alignItems: 'center', 
+          justifyContent: 'center' 
+        }}>
           {loading ? (
             <ActivityIndicator color="#ffffff" size="small" />
           ) : (
-            <Text style={textStyle}>{label}</Text>
+            <>
+              {icon && <View style={{ marginRight: 10 }}>{icon}</View>}
+              <Text style={textStyle}>{label}</Text>
+            </>
           )}
         </View>
       </TouchableOpacity>

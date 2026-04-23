@@ -9,6 +9,7 @@ import ReleaseNav from './ReleaseNav';
 import ErrorNav from './ErrorNav';
 import { AuthContext } from '../utils/AuthContext';
 import { useSelector } from 'react-redux';
+import { resetLogin } from '../App/reducers/auth';
 
 
 export default () => {
@@ -16,7 +17,7 @@ export default () => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const { isError, errorMessage } = useSelector((state: any) => state.auth);
-  const { isLoggedIn, isProcessing, isReleasing, resetLogin } = useContext(AuthContext) as any;
+  const { isLoggedIn, isProcessing, isReleasing } = useContext(AuthContext) as any;
   const handleRetry = () => {
     dispatch(resetLogin()); 
   };
