@@ -26,6 +26,21 @@ export async function authLogin({ email, password }: { email: string; password: 
   }
 
 }
+
+export async function googleLogin(googleData: any) {
+  const response = await fetch(BASE_URL + '/google-login', {
+    method: 'POST',
+    ...options,
+    body: JSON.stringify(googleData),
+  });
+  const data = await response.json();
+  if (response.ok) {
+    return data;
+  } else {
+    throw new Error(data.message || 'Google Login failed');
+  }
+}
+
 export async function userRegister({ email, password, firstName, lastName }: { email: string; password: string; firstName: string; lastName: string }) {
   const response = await fetch(BASE_URL + '/register', {
     method: 'POST',

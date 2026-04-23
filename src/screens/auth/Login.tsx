@@ -2,6 +2,7 @@ import React from 'react';
 import { useContext, useState, useEffect, useRef } from 'react';
 import { Text, TouchableOpacity, View, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/AntDesign';
 
 import CustomButton from '../../components/CustomButton';
 import CustomFooter from '../../components/CustomFooter';
@@ -11,7 +12,7 @@ import CustomModal from '../../components/CustomModal';
 import { IMG, ROUTES } from '../../utils';
 import { AuthContext } from '../../utils/AuthContext';
 import { useDispatch, useSelector } from 'react-redux';
-import { userLogin, resetLogin } from '../../App/reducers/auth';
+import { userLogin, userGoogleLogin, resetLogin } from '../../App/reducers/auth';
 
 const Login = () => {
   // --- STATE ---
@@ -100,13 +101,13 @@ const Login = () => {
       <View>
         <Image
           source={IMG.LOGO}
-          style={{ width: 300, height: 200, marginTop: 80 }}
+          style={{ width: 300, height: 200, marginTop: 50 }}
           resizeMode="contain"
         />
       </View>
 
       <View style={{ width: '100%', alignItems: 'center' }}>
-        <Text style={{ fontSize: 20, color: '#0ea242', fontFamily: 'Poppins-Medium', marginBottom: 10 }}>
+        <Text style={{ fontSize: 20, color: '#024118', fontFamily: 'Poppins-Medium', marginBottom: 10, }}>
           Cultivating Green Futures
         </Text>
 
@@ -165,7 +166,7 @@ const Login = () => {
           justifyContent: 'center',
           marginVertical: 20,
           width: '80%',
-          backgroundColor: '#47bf24',
+          backgroundColor: '#1b6106',
           borderRadius: 10,
         }}
         textStyle={{
@@ -176,6 +177,7 @@ const Login = () => {
         }}
         loading={isLoading}
         onPress={() => {
+          if (isLoading) return;
           console.log("Attempting login with:", email, password);
           didSubmitRef.current = true;
           dispatch(
@@ -187,7 +189,34 @@ const Login = () => {
         }}
       />
 
-      <View style={{ flexDirection: 'row' }}>
+      <CustomButton
+        label={'Continue with Google'}
+        icon={<Icon name="google" size={20} color="#1f6908" />}
+        containerStyle={{
+          justifyContent: 'center',
+          marginBottom: 20,
+          width: '80%',
+          backgroundColor: '#ffffff',
+          borderRadius: 10,
+          borderWidth: 1,
+          borderColor: '#47bf24',
+        }}
+        textStyle={{
+          color: '#1f6908',
+          textAlign: 'center',
+          fontSize: 16,
+          fontFamily: 'Poppins-Medium',
+        }}
+        loading={isLoading}
+        onPress={() => {
+          if (isLoading) return;
+          console.log("Attempting Google Login");
+          didSubmitRef.current = true;
+          dispatch(userGoogleLogin());
+        }}
+      />
+
+      <View style={{ flexDirection: 'row', alignSelf: 'flex-start', marginLeft: '12%' }}>
         <Text style={{ fontFamily: 'Poppins-Medium', color: '#0f3a03', fontSize: 12 }}>
           Not register yet?
         </Text>

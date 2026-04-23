@@ -39,10 +39,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }, 1500); 
   };
 
-  const resetLogin = () => {
-      // Logic for resetLogin if needed, or it might be coming from actions
-  };
-
   return (
     <AuthContext.Provider 
       value={{
@@ -54,7 +50,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         setIsProcessing,
         isReleasing, 
         setIsReleasing,
-        resetLogin
       }}
     >
       {children}
